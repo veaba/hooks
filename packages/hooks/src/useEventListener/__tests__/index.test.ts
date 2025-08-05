@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import useEventListener from '../index';
 
 describe('useEventListener', () => {

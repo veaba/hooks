@@ -1,7 +1,8 @@
 import type { RenderHookResult } from '@testing-library/react';
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import { useState } from 'react';
 import useMemoizedFn from '../';
+import { act } from 'react';
 
 const useCount = () => {
   const [count, setCount] = useState(0);

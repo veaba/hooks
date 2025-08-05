@@ -1,5 +1,6 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useTheme from '../index';
+import { act } from 'react';
 
 describe('useTheme', () => {
   test('themeMode init', () => {

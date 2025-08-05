@@ -1,9 +1,10 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import useDynamicList from '../index';
+import { act } from 'react';
 
 describe('useDynamicList', () => {
   const setUp = (props: any): any => renderHook(() => useDynamicList(props));
-  const warnSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  const warnSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
   afterEach(() => {
     warnSpy.mockReset();

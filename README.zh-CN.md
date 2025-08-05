@@ -6,6 +6,8 @@
 
 <div align="center">
 
+> 本项目为 [veaba/hooks](veaba/hooks) fork for [alibaba/hooks](alibaba/hooks)，使用现代流行的构件工具库重构，以获得开发体验，仅限于个人学习项目。
+
 一套高质量可靠的 React Hooks 库
 
 [![NPM version][image-1]][1]

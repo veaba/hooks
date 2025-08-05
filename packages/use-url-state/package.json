@@ -17,7 +17,7 @@
     "url": "git+https://github.com/alibaba/hooks.git"
   },
   "scripts": {
-    "build": "gulp && webpack-cli",
+    "build": "tsdown",
     "test": "vitest run",
     "test:cov": "vitest run --coverage"
   },

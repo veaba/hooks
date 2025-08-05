@@ -1,6 +1,7 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useExternal, { Options } from '../index';
 import { fireEvent } from '@testing-library/react';
+import { act } from 'react';
 
 const setup = (path: string, options?: Options) => renderHook(() => useExternal(path, options));
 
@@ -55,7 +56,7 @@ describe('useExternal', () => {
   });
 
   it('should throw error when provide unsupported type', () => {
-    const mockSpy = jest.spyOn(console, 'error').mockImplementationOnce(() => {});
+    const mockSpy = vi.spyOn(console, 'error').mockImplementationOnce(() => {});
     setup('ahooks.ts');
     expect(mockSpy).toBeCalled();
   });

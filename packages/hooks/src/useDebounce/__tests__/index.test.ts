@@ -1,6 +1,7 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useDebounce from '../index';
 import { sleep } from '../../utils/testingHelpers';
+import { act } from 'react';
 
 describe('useDebounce', () => {
   it('useDebounce wait:200ms', async () => {

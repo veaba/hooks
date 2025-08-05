@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import type { Options } from '../index';
 import useDrop from '../index';
 import type { BasicTarget } from '../../utils/domTarget';
@@ -8,10 +8,10 @@ const setup = (target: unknown, options?: Options) =>
 
 const events = {};
 const mockTarget = {
-  addEventListener: jest.fn((event, callback) => {
+  addEventListener: vi.fn((event, callback) => {
     events[event] = callback;
   }),
-  removeEventListener: jest.fn((event) => {
+  removeEventListener: vi.fn((event) => {
     Reflect.deleteProperty(events, event);
   }),
 };
@@ -35,8 +35,8 @@ const mockEvent = {
       return [] as unknown[];
     },
   },
-  preventDefault: jest.fn(),
-  stopPropagation: jest.fn(),
+  preventDefault: vi.fn(),
+  stopPropagation: vi.fn(),
 };
 
 describe('useDrop', () => {
@@ -67,11 +67,11 @@ describe('useDrop', () => {
   });
 
   it('should call callback', () => {
-    const onDragEnter = jest.fn();
-    const onDragOver = jest.fn();
-    const onDragLeave = jest.fn();
-    const onDrop = jest.fn();
-    const onPaste = jest.fn();
+    const onDragEnter = vi.fn();
+    const onDragOver = vi.fn();
+    const onDragLeave = vi.fn();
+    const onDrop = vi.fn();
+    const onPaste = vi.fn();
 
     setup(mockTarget, {
       onDragEnter,
@@ -89,7 +89,7 @@ describe('useDrop', () => {
   });
 
   it('should call onText on drop', async () => {
-    jest.spyOn(mockEvent.dataTransfer, 'items', 'get').mockReturnValue([
+    vi.spyOn(mockEvent.dataTransfer, 'items', 'get').mockReturnValue([
       {
         getAsString: (callback) => {
           callback('drop text');
@@ -97,7 +97,7 @@ describe('useDrop', () => {
       },
     ]);
 
-    const onText = jest.fn();
+    const onText = vi.fn();
     setup(mockTarget, {
       onText,
     });
@@ -108,8 +108,8 @@ describe('useDrop', () => {
 
   it('should call onFiles on drop', async () => {
     const file = new File(['hello'], 'hello.png');
-    jest.spyOn(mockEvent.dataTransfer, 'files', 'get').mockReturnValue([file]);
-    const onFiles = jest.fn();
+    vi.spyOn(mockEvent.dataTransfer, 'files', 'get').mockReturnValue([file]);
+    const onFiles = vi.fn();
     setup(mockTarget, {
       onFiles,
     });
@@ -120,11 +120,11 @@ describe('useDrop', () => {
 
   it('should call onUri on drop', async () => {
     const url = 'https://alipay.com';
-    jest.spyOn(mockEvent.dataTransfer, 'getData').mockImplementation((format: string) => {
+    vi.spyOn(mockEvent.dataTransfer, 'getData').mockImplementation((format: string) => {
       if (format === 'text/uri-list') return url;
     });
 
-    const onUri = jest.fn();
+    const onUri = vi.fn();
     setup(mockTarget, {
       onUri,
     });
@@ -137,11 +137,11 @@ describe('useDrop', () => {
     const data = {
       value: 'mock',
     };
-    jest.spyOn(mockEvent.dataTransfer, 'getData').mockImplementation((format: string) => {
+    vi.spyOn(mockEvent.dataTransfer, 'getData').mockImplementation((format: string) => {
       if (format === 'custom') return data;
     });
 
-    const onDom = jest.fn();
+    const onDom = vi.fn();
     setup(mockTarget, {
       onDom,
     });
@@ -150,7 +150,7 @@ describe('useDrop', () => {
     expect(onDom.mock.calls[0][0]).toMatchObject(data);
 
     // catch JSON.parse error
-    jest.spyOn(mockEvent.dataTransfer, 'getData').mockImplementation((format: string) => {
+    vi.spyOn(mockEvent.dataTransfer, 'getData').mockImplementation((format: string) => {
       if (format === 'custom') return {};
     });
     events['dragenter'](mockEvent);
@@ -159,7 +159,7 @@ describe('useDrop', () => {
   });
 
   it('should call onText on paste', async () => {
-    jest.spyOn(mockEvent.clipboardData, 'items', 'get').mockReturnValue([
+    vi.spyOn(mockEvent.clipboardData, 'items', 'get').mockReturnValue([
       {
         getAsString: (callback) => {
           callback('paste text');
@@ -167,7 +167,7 @@ describe('useDrop', () => {
       },
     ]);
 
-    const onText = jest.fn();
+    const onText = vi.fn();
     setup(mockTarget, {
       onText,
     });

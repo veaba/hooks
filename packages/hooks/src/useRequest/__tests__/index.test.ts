@@ -1,13 +1,16 @@
 import type { RenderHookResult } from '@testing-library/react';
-import { act, renderHook, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
 import useRequest from '../index';
 import { request } from '../../utils/testingHelpers';
+import { act } from 'react';
+import { renderHook } from 'vitest-browser-react';
+const { waitFor} = vi
 
-const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
 
 describe('useRequest', () => {
   beforeAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterAll(() => {
@@ -27,7 +30,7 @@ describe('useRequest', () => {
     const successCallback = (text: string) => {
       success = text;
     };
-    const errorCallback = jest.fn();
+    const errorCallback = vi.fn();
     const beforeCallback = () => {
       value = 'before';
     };
@@ -48,7 +51,7 @@ describe('useRequest', () => {
     expect(success).toBeUndefined();
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(hook.result.current.loading).toBe(false));
     expect(success).toBe('success');
@@ -63,7 +66,7 @@ describe('useRequest', () => {
     expect(hook.result.current.loading).toBe(true);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(hook.result.current.error).toEqual(new Error('fail')));
     expect(hook.result.current.loading).toBe(false);
@@ -76,7 +79,7 @@ describe('useRequest', () => {
     expect(hook.result.current.loading).toBe(true);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(hook.result.current.data).toBe('success');
     await waitFor(() => expect(hook.result.current.loading).toBe(false));
@@ -93,7 +96,7 @@ describe('useRequest', () => {
     expect(hook.result.current.loading).toBe(true);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(hook.result.current.error).toEqual(new Error('fail')));
     expect(hook.result.current.loading).toBe(false);
@@ -114,7 +117,7 @@ describe('useRequest', () => {
     expect(hook.result.current.loading).toBe(true);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(hook.result.current.loading).toBe(false));
     expect(hook.result.current.data).toBe('success');
@@ -124,7 +127,7 @@ describe('useRequest', () => {
     expect(hook.result.current.loading).toBe(true);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(hook.result.current.loading).toBe(false));
     expect(hook.result.current.error).toEqual(new Error('fail'));
@@ -152,7 +155,7 @@ describe('useRequest', () => {
     });
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(success).toBe('');
     await waitFor(() => expect(error).toEqual(new Error('fail')));
@@ -170,7 +173,7 @@ describe('useRequest', () => {
     });
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(success).toBe('success'));
     expect(error).toBe('');
@@ -183,7 +186,7 @@ describe('useRequest', () => {
     });
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(hook.result.current.data).toBe('success'));
     act(() => {
@@ -202,7 +205,7 @@ describe('useRequest', () => {
     expect(hook.result.current.loading).toBe(true);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(hook.result.current.params).toEqual([1, 2, 3]);
     await waitFor(() => expect(hook.result.current.data).toBe('success'));

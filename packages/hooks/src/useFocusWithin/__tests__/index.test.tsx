@@ -26,8 +26,8 @@ const setup = (options?: Options) => {
 
 describe('useFocusWithin', () => {
   it('should call onFocus/onBlur', () => {
-    const onFocus = jest.fn();
-    const onBlur = jest.fn();
+    const onFocus = vi.fn();
+    const onBlur = vi.fn();
     const result = setup({ onFocus, onBlur });
     fireEvent.focusIn(result.getByLabelText('First Name'));
     expect(onFocus).toBeCalled();
@@ -36,7 +36,7 @@ describe('useFocusWithin', () => {
   });
 
   it('should call onChange', () => {
-    const onChange = jest.fn();
+    const onChange = vi.fn();
     const result = setup({ onChange });
     fireEvent.focusIn(result.getByLabelText('First Name'));
     expect(onChange).toBeCalledWith(true);

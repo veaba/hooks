@@ -1,20 +1,21 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import type { Options } from '../index';
 import useDrag from '../index';
 import type { BasicTarget } from '../../utils/domTarget';
+import { vi, describe, it } from 'vitest';
 
 const setup = <T>(data: T, target: BasicTarget, options?: Options) =>
   renderHook((newData: T) => useDrag(newData ? newData : data, target, options));
 
 const events: Record<string, (event: any) => void> = {};
 const mockTarget = {
-  addEventListener: jest.fn((event, callback) => {
+  addEventListener: vi.fn((event, callback) => {
     events[event] = callback;
   }),
-  removeEventListener: jest.fn((event) => {
+  removeEventListener: vi.fn((event) => {
     Reflect.deleteProperty(events, event);
   }),
-  setAttribute: jest.fn(),
+  setAttribute: vi.fn(),
 };
 
 describe('useDrag', () => {
@@ -29,11 +30,11 @@ describe('useDrag', () => {
   });
 
   it('should triggle drag callback', () => {
-    const onDragStart = jest.fn();
-    const onDragEnd = jest.fn();
+    const onDragStart = vi.fn();
+    const onDragEnd = vi.fn();
     const mockEvent = {
       dataTransfer: {
-        setData: jest.fn(),
+        setData: vi.fn(),
       },
     };
     const hook = setup(1, mockTarget as any, {
@@ -55,6 +56,10 @@ describe('useDrag', () => {
     expect(onDragEnd).toBeCalled();
   });
 
+
+  /**
+   * @vitest-environment jsdom
+   */
   it(`should not work when target don't support addEventListener method`, () => {
     Object.defineProperty(mockTarget, 'addEventListener', {
       get() {

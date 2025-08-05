@@ -1,7 +1,8 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import { useRef, useCallback, useState } from 'react';
 import useLockFn from '../index';
 import { sleep } from '../../utils/testingHelpers';
+import { act } from 'react';
 
 describe('useLockFn', () => {
   const setUp = (): any =>

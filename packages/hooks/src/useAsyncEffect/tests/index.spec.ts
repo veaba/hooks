@@ -1,8 +1,9 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import { useState } from 'react';
 import { describe, expect, test } from 'vitest';
 import { sleep } from '../../utils/testingHelpers';
 import useAsyncEffect from '../index';
+import { act } from 'react';
 
 describe('useAsyncEffect', () => {
   test('should work without clean up', async () => {

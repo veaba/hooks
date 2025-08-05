@@ -1,6 +1,8 @@
-import { fireEvent, render, renderHook, act } from '@testing-library/react';
-import React from 'react';
+import { fireEvent, } from '@testing-library/react';
 import useReactive from '../';
+import { act } from 'react';
+import { renderHook, render } from 'vitest-browser-react';
+import type { a } from 'vitest/dist/chunks/suite.d.FvehnV49.js';
 
 const Demo = () => {
   const state: {
@@ -84,9 +86,9 @@ describe('test useReactive feature', () => {
   it('test count', () => {
     const wrap = render(<Demo />);
 
-    const count = wrap.getByRole('addCount');
-    const addCountBtn = wrap.getByRole('addCountBtn');
-    const subCountBtn = wrap.getByRole('subCountBtn');
+    const count = wrap.getByRole('addCount') as any;
+    const addCountBtn = wrap.getByRole('addCountBtn') as any;
+    const subCountBtn = wrap.getByRole('subCountBtn') as any;
 
     act(() => {
       fireEvent.click(addCountBtn);
@@ -116,11 +118,11 @@ describe('test useReactive feature', () => {
 
   it('test array', () => {
     const wrap = render(<Demo />);
-    const testArray = wrap.getByRole('test-array');
-    const pushbtn = wrap.getByRole('pushbtn');
-    const popbtn = wrap.getByRole('popbtn');
-    const shiftbtn = wrap.getByRole('shiftbtn');
-    const unshiftbtn = wrap.getByRole('unshiftbtn');
+    const testArray = wrap.getByRole('test-array') as any;
+    const pushbtn = wrap.getByRole('pushbtn') as any;
+    const popbtn = wrap.getByRole('popbtn') as any;
+    const shiftbtn = wrap.getByRole('shiftbtn') as any;
+    const unshiftbtn = wrap.getByRole('unshiftbtn') as any;
     act(() => {
       fireEvent.click(pushbtn);
     });
@@ -199,7 +201,7 @@ describe('test useReactive feature', () => {
     const hook = renderHook(() => useReactive({ html: <div role="id">foo</div> }));
     const proxy = hook.result.current;
     const wrap = render(proxy.html);
-    const html = wrap.getByRole('id');
+    const html = wrap.getByRole('id')  as any;
 
     expect(html.textContent).toBe('foo');
     act(() => {
@@ -228,8 +230,8 @@ describe('test useReactive feature', () => {
   it('test input1', () => {
     const wrap = render(<Demo />);
 
-    const input = wrap.getByRole('input1');
-    const inputVal = wrap.getByRole('inputVal1');
+    const input = wrap.getByRole('input1') as any;
+    const inputVal = wrap.getByRole('inputVal1') as any;
     act(() => {
       fireEvent.change(input, { target: { value: 'a' } });
     });
@@ -244,8 +246,8 @@ describe('test useReactive feature', () => {
   it('delete object property', () => {
     const wrap = render(<Demo />);
 
-    const deleteProperty = wrap.getByRole('deleteProperty');
-    const deletePropertyBtn = wrap.getByRole('deletePropertyBtn');
+    const deleteProperty = wrap.getByRole('deleteProperty') as any;
+    const deletePropertyBtn = wrap.getByRole('deletePropertyBtn') as any;
     expect(deleteProperty.textContent).toBe('foo');
 
     act(() => {

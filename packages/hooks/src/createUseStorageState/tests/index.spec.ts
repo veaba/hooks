@@ -1,7 +1,8 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import { describe, expect, test } from 'vitest';
 import type { Options } from '../index';
 import { createUseStorageState } from '../index';
+import { act } from 'react';
 
 class TestStorage implements Storage {
   [name: string]: any;

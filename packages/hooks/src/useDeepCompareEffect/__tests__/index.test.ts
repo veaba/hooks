@@ -1,6 +1,7 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import { useState } from 'react';
 import useDeepCompareEffect from '../index';
+import { act } from 'react';
 
 describe('useDeepCompareEffect', () => {
   it('test deep compare', async () => {

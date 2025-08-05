@@ -1,8 +1,8 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import { fireEvent } from '@testing-library/react';
 import useKeyPress from '../index';
 
-const callback = jest.fn();
+const callback = vi.fn();
 
 afterEach(() => {
   callback.mockClear();
@@ -37,9 +37,9 @@ describe('useKeyPress ', () => {
   });
 
   it('test combination keys by exact match', async () => {
-    const callbackShift = jest.fn();
-    const callbackC = jest.fn();
-    const callbackMulti = jest.fn();
+    const callbackShift = vi.fn();
+    const callbackC = vi.fn();
+    const callbackMulti = vi.fn();
     const hook1 = renderHook(() => useKeyPress(['shift.c'], callback, { exactMatch: true }));
     const hook2 = renderHook(() => useKeyPress(['shift'], callbackShift, { exactMatch: true }));
     const hook3 = renderHook(() => useKeyPress(['c'], callbackC, { exactMatch: true }));
@@ -85,8 +85,8 @@ describe('useKeyPress ', () => {
   });
 
   it('test `keyFilter` function parameter', async () => {
-    const callback1 = jest.fn();
-    const callback2 = jest.fn();
+    const callback1 = vi.fn();
+    const callback2 = vi.fn();
 
     // all keys can trigger callback
     const hook1 = renderHook(() => useKeyPress(() => true, callback1));

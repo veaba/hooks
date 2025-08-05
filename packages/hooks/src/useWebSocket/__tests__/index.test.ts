@@ -1,7 +1,8 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import WS from 'jest-websocket-mock';
 import { sleep } from '../../utils/testingHelpers';
 import useWebSocket, { ReadyState } from '../index';
+import { act } from 'react';
 
 const promise: Promise<void> = new Promise((resolve) => resolve());
 const wsUrl = 'ws://localhost:9999';
@@ -86,8 +87,8 @@ describe('useWebSocket', () => {
 
   it('should not call connect when initial socketUrl is empty', async () => {
     const wsServer = new WS(wsUrl);
-    const onOpen = jest.fn();
-    const onClose = jest.fn();
+    const onOpen = vi.fn();
+    const onClose = vi.fn();
 
     let url = '';
     const hooks = renderHook(() => useWebSocket(url, { onOpen, onClose }));
@@ -116,8 +117,8 @@ describe('useWebSocket', () => {
     const wsServer1 = new WS(wsUrl);
     const wsServer2 = new WS(wsUrl1);
 
-    const onOpen = jest.fn();
-    const onClose = jest.fn();
+    const onOpen = vi.fn();
+    const onClose = vi.fn();
 
     let url = wsUrl;
     const hooks = renderHook(() => useWebSocket(url, { onOpen, onClose, reconnectInterval: 300 }));

@@ -1,6 +1,7 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import type { Options, Props } from '../index';
 import useControllableValue from '../index';
+import { act } from 'react';
 
 describe('useControllableValue', () => {
   const setUp = (props?: Props, options?: Options<any>) =>

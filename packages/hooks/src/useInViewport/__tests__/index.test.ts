@@ -1,13 +1,14 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useInViewport from '../index';
+import { act } from 'react';
 
 const targetEl = document.createElement('div');
 document.body.appendChild(targetEl);
 
-const observe = jest.fn();
-const disconnect = jest.fn();
+const observe = vi.fn();
+const disconnect = vi.fn();
 
-const mockIntersectionObserver = jest.fn().mockReturnValue({
+const mockIntersectionObserver = vi.fn().mockReturnValue({
   observe,
   disconnect,
 });
@@ -37,7 +38,7 @@ describe('useInViewport', () => {
 
   it('should work when target array is in viewport and has a callback', async () => {
     const targetEls: HTMLDivElement[] = [];
-    const callback = jest.fn();
+    const callback = vi.fn();
     for (let i = 0; i < 2; i++) {
       const target = document.createElement('div');
       document.body.appendChild(target);

@@ -1,10 +1,12 @@
 import useDocumentVisibility from '../index';
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
+import { vi } from 'vitest';
+import { act } from 'react';
 
-const mockIsBrowser = jest.fn();
-const mockDocumentVisibilityState = jest.spyOn(document, 'visibilityState', 'get');
+const mockIsBrowser = vi.fn();
+const mockDocumentVisibilityState = vi.spyOn(document, 'visibilityState', 'get');
 
-jest.mock('../../utils/isBrowser', () => {
+vi.mock('../../utils/isBrowser.ts', () => {
   return {
     __esModule: true,
     get default() {
@@ -14,7 +16,7 @@ jest.mock('../../utils/isBrowser', () => {
 });
 
 afterAll(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 describe('useDocumentVisibility', () => {

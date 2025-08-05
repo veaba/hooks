@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import useLatest from '../index';
 
 const setUp = (val: any) => renderHook((state) => useLatest(state), { initialProps: val });

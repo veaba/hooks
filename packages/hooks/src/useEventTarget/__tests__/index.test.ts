@@ -1,5 +1,6 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import useEventTarget from '../index';
+import { act } from 'react';
 
 describe('useEventTarget', () => {
   it('should work without initial value', async () => {

@@ -1,5 +1,6 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useSet from '../index';
+import { act } from 'react';
 
 const setUp = <K>(initialSet?: Iterable<K>) => renderHook(() => useSet(initialSet));
 

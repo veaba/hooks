@@ -1,5 +1,6 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useSessionStorageState from '../index';
+import { act } from 'react';
 
 describe('useSessionStorageState', () => {
   const setUp = <T>(key: string, value: T) =>

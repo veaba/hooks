@@ -1,5 +1,6 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useSetState from '../index';
+import { act } from 'react';
 
 describe('useSetState', () => {
   const setUp = <T extends object>(initialValue: T) =>

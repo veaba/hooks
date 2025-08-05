@@ -1,6 +1,7 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import type { Options } from '../../createUseStorageState';
 import useLocalStorageState from '../index';
+import { act } from 'react';
 
 describe('useLocalStorageState', () => {
   const setUp = <T>(key: string, value: T, options?: Options<T>) =>

@@ -1,6 +1,7 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import { useState } from 'react';
 import useEventEmitter from '../index';
+import { act } from 'react';
 
 describe('useEventEmitter', () => {
   const setUp = () =>

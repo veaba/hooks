@@ -1,7 +1,8 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import { useState } from 'react';
 import useSelections from '../index';
 import type { Options } from '../index';
+import { act } from 'react';
 
 const _data = [1, 2, 3];
 const _selected = [1];

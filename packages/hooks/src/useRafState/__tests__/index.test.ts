@@ -1,9 +1,11 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useRafState from '../index';
+import { vi, describe, it } from 'vitest';
+import { act } from 'react';
 
 describe('useRafState', () => {
   it('should work', () => {
-    const mockRaf = jest
+    const mockRaf = vi
       .spyOn(window, 'requestAnimationFrame')
       .mockImplementation((cb: FrameRequestCallback) => {
         cb(0);

@@ -1,6 +1,7 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useUpdate from '..';
 import useMemoizedFn from '../../useMemoizedFn';
+import { act } from 'react';
 
 describe('useUpdate', () => {
   it('should update', () => {

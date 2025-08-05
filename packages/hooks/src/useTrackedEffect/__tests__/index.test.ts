@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import useTrackedEffect from '../index';
 
 describe('useTrackedEffect', () => {
@@ -6,9 +6,9 @@ describe('useTrackedEffect', () => {
   let changedDepIndexes = [];
   let prevDependencies = [];
   let currentDependencies = [];
-  const mockEffectCleanup = jest.fn();
-  const mockEffectCallback = jest.fn().mockReturnValue(mockEffectCleanup);
-  const mockEffectWithTracked = jest.fn().mockImplementation((changes, prevDeps, curDeps) => {
+  const mockEffectCleanup = vi.fn();
+  const mockEffectCallback = vi.fn().mockReturnValue(mockEffectCleanup);
+  const mockEffectWithTracked = vi.fn().mockImplementation((changes, prevDeps, curDeps) => {
     //This effect callback accept an addition parameter which contains indexes of dependecies which changed their equalities.
     changedDepIndexes = changes;
     prevDependencies = prevDeps;

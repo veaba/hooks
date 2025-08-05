@@ -7,9 +7,9 @@
     "dist",
     "**/__tests__",
     "**/__test__",
+    "**/tests",
     "**/demo",
     "example",
-    "gulpfile.js",
     "vitest.config.ts"
   ]
 }

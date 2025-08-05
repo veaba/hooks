@@ -1,7 +1,8 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useFullscreen from '../index';
 import type { Options } from '../index';
 import type { BasicTarget } from '../../utils/domTarget';
+import { act } from 'react';
 
 let globalHook: any;
 let targetEl: any;
@@ -18,24 +19,24 @@ describe('useFullscreen', () => {
   beforeEach(() => {
     targetEl = document.createElement('div');
     document.body.appendChild(targetEl);
-    jest.spyOn(HTMLElement.prototype, 'requestFullscreen').mockImplementation(() => {
+    vi.spyOn(HTMLElement.prototype, 'requestFullscreen').mockImplementation(() => {
       Object.defineProperty(document, 'fullscreenElement', {
         value: targetEl,
       });
       return Promise.resolve();
     });
-    jest.spyOn(document, 'exitFullscreen').mockImplementation(() => {
+    vi.spyOn(document, 'exitFullscreen').mockImplementation(() => {
       Object.defineProperty(document, 'fullscreenElement', {
         value: null,
       });
       return Promise.resolve();
     });
-    jest.spyOn(document, 'addEventListener').mockImplementation((eventName, callback) => {
+    vi.spyOn(document, 'addEventListener').mockImplementation((eventName, callback) => {
       if (events[eventName]) {
         events[eventName].add(callback);
       }
     });
-    jest.spyOn(document, 'removeEventListener').mockImplementation((eventName, callback) => {
+    vi.spyOn(document, 'removeEventListener').mockImplementation((eventName, callback) => {
       if (events[eventName]) {
         events[eventName].delete(callback);
       }
@@ -49,7 +50,7 @@ describe('useFullscreen', () => {
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
   });
 
   it('enterFullscreen/exitFullscreen should be work', () => {
@@ -85,8 +86,8 @@ describe('useFullscreen', () => {
   });
 
   it('onExit/onEnter should be called', () => {
-    const onExit = jest.fn();
-    const onEnter = jest.fn();
+    const onExit = vi.fn();
+    const onEnter = vi.fn();
     const { result } = setup(targetEl, {
       onExit,
       onEnter,
@@ -106,8 +107,8 @@ describe('useFullscreen', () => {
   });
 
   it('onExit/onEnter should not be called', () => {
-    const onExit = jest.fn();
-    const onEnter = jest.fn();
+    const onExit = vi.fn();
+    const onEnter = vi.fn();
     const { result } = setup(targetEl, {
       onExit,
       onEnter,
@@ -136,8 +137,8 @@ describe('useFullscreen', () => {
   it('pageFullscreen should be work', () => {
     const PAGE_FULLSCREEN_CLASS_NAME = 'test-page-fullscreen';
     const PAGE_FULLSCREEN_Z_INDEX = 101;
-    const onExit = jest.fn();
-    const onEnter = jest.fn();
+    const onExit = vi.fn();
+    const onEnter = vi.fn();
     const { result } = setup(targetEl, {
       onExit,
       onEnter,
@@ -167,7 +168,7 @@ describe('useFullscreen', () => {
   });
 
   it('enterFullscreen should not work when target is not element', () => {
-    const onEnter = jest.fn();
+    const onEnter = vi.fn();
     const { result } = setup(null, { onEnter });
     const { enterFullscreen } = result.current[1];
     enterFullscreen();

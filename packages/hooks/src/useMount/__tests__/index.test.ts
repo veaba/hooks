@@ -1,10 +1,10 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import useMount from '../index';
 
 describe('useMount', () => {
   it('test mount', async () => {
-    const destructor = jest.fn();
-    const fn = jest.fn();
+    const destructor = vi.fn();
+    const fn = vi.fn();
     fn.mockReturnValue(destructor);
     const hook = renderHook(() => useMount(fn));
     expect(fn).toHaveBeenCalledTimes(1);
@@ -22,7 +22,7 @@ describe('useMount', () => {
   });
 
   // it('should output error when fn is not a function', () => {
-  //   const errSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  //   const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
   //   renderHook(() => useMount(1 as any));
   //   expect(errSpy).toBeCalledWith(
   //     'useMount: parameter `fn` expected to be a function, but got "number".',

@@ -1,9 +1,13 @@
 import type { RenderHookResult } from '@testing-library/react';
-import { act, renderHook, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
 import { sleep } from '../../utils/testingHelpers';
 import useAntdTable from '../index';
 import { useEffect } from 'react';
 import { Form } from 'antd';
+import { act } from 'react';
+import { renderHook } from 'vitest-browser-react';
+
+const { waitFor} = vi
 
 interface Query {
   current: number;
@@ -13,7 +17,7 @@ interface Query {
 }
 
 describe('useAntdTable', () => {
-  // jest.useFakeTimers();
+  // vi.useFakeTimers();
 
   let queryArgs: any;
   const asyncFn = (query: Query, formData: any = {}) => {

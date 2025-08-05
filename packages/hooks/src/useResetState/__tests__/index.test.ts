@@ -1,5 +1,6 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useResetState from '../index';
+import { act } from 'react';
 
 describe('useResetState', () => {
   const setUp = <S>(initialValue: S | (() => S)) =>

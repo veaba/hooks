@@ -1,10 +1,13 @@
-import { act, renderHook, waitFor } from '@testing-library/react';
+import { vi } from 'vitest';
 import type { RenderHookResult } from '@testing-library/react';
 import useRequest from '../index';
 import { request } from '../../utils/testingHelpers';
+import { act } from 'react';
+import { renderHook } from 'vitest-browser-react';
+const { waitFor} = vi
 
 describe('useLoadingDelayPlugin', () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   const setUp = (
     service: Parameters<typeof useRequest>[0],
@@ -26,7 +29,7 @@ describe('useLoadingDelayPlugin', () => {
     expect(hook.result.current.loading).toBe(false);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(hook.result.current.loading).toBe(false));
 
@@ -38,12 +41,12 @@ describe('useLoadingDelayPlugin', () => {
     expect(hook.result.current.loading).toBe(false);
 
     act(() => {
-      jest.advanceTimersByTime(501);
+      vi.advanceTimersByTime(501);
     });
     expect(hook.result.current.loading).toBe(true);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(hook.result.current.loading).toBe(false));
     expect(hook.result.current.loading).toBe(false);
@@ -59,7 +62,7 @@ describe('useLoadingDelayPlugin', () => {
     expect(hook.result.current.loading).toBe(false);
 
     act(() => {
-      jest.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(3000);
     });
 
     await waitFor(() => expect(hook.result.current.loading).toBe(false));
@@ -74,7 +77,7 @@ describe('useLoadingDelayPlugin', () => {
     expect(hook.result.current.loading).toBe(false);
 
     act(() => {
-      jest.advanceTimersByTime(3000);
+      vi.advanceTimersByTime(3000);
     });
 
     await waitFor(() => expect(hook.result.current.loading).toBe(true));

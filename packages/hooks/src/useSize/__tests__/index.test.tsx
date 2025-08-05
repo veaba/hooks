@@ -1,16 +1,19 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { renderHook, act, render, screen } from '@testing-library/react';
 import useSize from '../index';
 
-let callback;
-jest.mock('resize-observer-polyfill', () => {
-  return jest.fn().mockImplementation((cb) => {
+let callback: (arg0: { target: { clientWidth: number; clientHeight: number; }; }[]) => void;
+
+vi.mock('resize-observer-polyfill', () => {
+  return {
+    default:vi.fn().mockImplementation((cb) => {
     callback = cb;
     return {
       observe: () => {},
       disconnect: () => {},
     };
-  });
+  })
+  }
 });
 
 // test about Resize Observer see https://github.com/que-etc/resize-observer-polyfill/tree/master/tests
@@ -21,7 +24,7 @@ describe('useSize', () => {
   });
 
   it('should work when target is a `MutableRefObject`', async () => {
-    const mockRaf = jest
+    const mockRaf = vi
       .spyOn(window, 'requestAnimationFrame')
       .mockImplementation((cb: FrameRequestCallback) => {
         cb(0);
@@ -57,7 +60,7 @@ describe('useSize', () => {
   });
 
   it('should work', () => {
-    const mockRaf = jest
+    const mockRaf = vi
       .spyOn(window, 'requestAnimationFrame')
       .mockImplementation((cb: FrameRequestCallback) => {
         cb(0);

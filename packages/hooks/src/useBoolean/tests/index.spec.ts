@@ -1,6 +1,7 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import { describe, expect, test } from 'vitest';
 import useBoolean from '../index';
+import { act } from 'react';
 
 const setUp = (defaultValue?: boolean) => renderHook(() => useBoolean(defaultValue));
 

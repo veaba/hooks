@@ -1,7 +1,8 @@
 import type { RenderHookResult } from '@testing-library/react';
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useThrottle from '../index';
 import { sleep } from '../../utils/testingHelpers';
+import { act } from 'react';
 
 let hook: RenderHookResult<any, any>;
 

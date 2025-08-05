@@ -1,32 +1,32 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import useLongPress from '../index';
 import type { Options } from '../index';
 
-const mockCallback = jest.fn();
-const mockClickCallback = jest.fn();
-const mockLongPressEndCallback = jest.fn();
+const mockCallback = vi.fn();
+const mockClickCallback = vi.fn();
+const mockLongPressEndCallback = vi.fn();
 
-let events = {};
+let events:Record<string, any>
 const mockTarget = {
-  addEventListener: jest.fn((event, callback) => {
+  addEventListener: vi.fn((event, callback) => {
     events[event] = callback;
   }),
-  removeEventListener: jest.fn((event) => {
+  removeEventListener: vi.fn((event) => {
     Reflect.deleteProperty(events, event);
   }),
 };
 
-const setup = (onLongPress: any, target, options?: Options) =>
+const setup = (onLongPress: any, target: any, options?: Options) =>
   renderHook(() => useLongPress(onLongPress, target, options));
 
 describe('useLongPress', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterEach(() => {
     events = {};
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('longPress callback correct', () => {
@@ -36,7 +36,7 @@ describe('useLongPress', () => {
     });
     expect(mockTarget.addEventListener).toBeCalled();
     events['mousedown']();
-    jest.advanceTimersByTime(350);
+    vi.advanceTimersByTime(350);
     events['mouseleave']();
     expect(mockCallback).toBeCalledTimes(1);
     expect(mockLongPressEndCallback).toBeCalledTimes(1);
@@ -65,7 +65,7 @@ describe('useLongPress', () => {
     });
     expect(mockTarget.addEventListener).toBeCalled();
     events['mousedown']();
-    jest.advanceTimersByTime(350);
+    vi.advanceTimersByTime(350);
     events['mouseup']();
     events['mousedown']();
     events['mouseup']();
@@ -89,7 +89,7 @@ describe('useLongPress', () => {
         clientY: 10,
       }),
     );
-    jest.advanceTimersByTime(320);
+    vi.advanceTimersByTime(320);
     expect(mockCallback).not.toBeCalled();
 
     unmount();

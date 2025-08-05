@@ -1,6 +1,7 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import type { Options } from '../index';
 import useCounter from '../index';
+import { act } from 'react';
 
 const setUp = (init?: number, options?: Options) => renderHook(() => useCounter(init, options));
 

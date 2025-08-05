@@ -1,7 +1,8 @@
 import type { RenderHookResult } from '@testing-library/react';
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useThrottleFn from '../index';
 import { sleep } from '../../utils/testingHelpers';
+import { act } from 'react';
 
 interface ParamsObj {
   fn: (...arg: any) => any;
@@ -58,7 +59,7 @@ describe('useThrottleFn', () => {
   });
 
   // it('should output error when fn is not a function', () => {
-  //   const errSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  //   const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
   //   renderHook(() => useThrottleFn(1 as any));
   //   expect(errSpy).toBeCalledWith('useThrottleFn expected parameter is a function, got number');
   //   errSpy.mockRestore();

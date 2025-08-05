@@ -1,7 +1,9 @@
 import type { RenderHookResult } from '@testing-library/react';
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import type { Options } from '../index';
 import useVirtualList from '../index';
+import { vi, describe, beforeEach,afterEach,it } from 'vitest'
+import { act } from 'react';
 
 describe('useVirtualList', () => {
   describe('virtual list render', () => {
@@ -15,8 +17,8 @@ describe('useVirtualList', () => {
       // mock clientheight, clientWidth
       // see: https://github.com/testing-library/react-testing-library/issues/353
 
-      jest.spyOn(container, 'clientHeight', 'get').mockImplementation(() => 300);
-      jest.spyOn(container, 'clientWidth', 'get').mockImplementation(() => 300);
+      vi.spyOn(container, 'clientHeight', 'get').mockImplementation(() => 300);
+      vi.spyOn(container, 'clientWidth', 'get').mockImplementation(() => 300);
 
       wrapper = document.createElement('div');
       container.appendChild(wrapper);
@@ -33,7 +35,7 @@ describe('useVirtualList', () => {
       hook = renderHook(() => useVirtualList(list, options));
     };
 
-    it('test return list size', () => {
+    it('test return list size', async () => {
       setup(Array.from(Array(99999).keys()), {
         containerTarget: () => container,
         wrapperTarget: () => wrapper,
@@ -45,8 +47,11 @@ describe('useVirtualList', () => {
       });
 
       // 10 items plus 5 overscan * 2
-      expect(hook.result.current[0].length).toBe(20);
-      expect(container.scrollTop).toBe(80 * 30);
+
+      await vi.waitFor(() => {
+        expect(hook.result.current[0].length).toBe(20);
+        expect(container.scrollTop).toBe(80 * 30);
+      })
     });
 
     it('test with fixed height', () => {

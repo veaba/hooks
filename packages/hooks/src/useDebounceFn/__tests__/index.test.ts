@@ -1,7 +1,8 @@
 import type { RenderHookResult } from '@testing-library/react';
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import { sleep } from '../../utils/testingHelpers';
 import useDebounceFn from '../index';
+import { act } from 'react';
 
 interface ParamsObj {
   fn: (...arg: any) => any;
@@ -57,7 +58,7 @@ describe('useDebounceFn', () => {
   });
 
   // it('should output error when fn is not a function', () => {
-  //   const errSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  //   const errSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
   //   renderHook(() => useDebounceFn(1 as any));
   //   expect(errSpy).toBeCalledWith('useDebounceFn expected parameter is a function, got number');
   //   errSpy.mockRestore();

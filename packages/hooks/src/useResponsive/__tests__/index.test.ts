@@ -1,5 +1,6 @@
-import { renderHook, act } from '../../utils/tests';
+import { renderHook } from 'vitest-browser-react';
 import useResponsive from '../';
+import { act } from 'react';
 
 describe('useResponsive', () => {
   function changeWidth(width: number) {

@@ -1,7 +1,8 @@
-import { renderHook, act } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useCookieState from '../index';
 import type { Options } from '../index';
 import Cookies from 'js-cookie';
+import { act } from 'react';
 
 describe('useCookieState', () => {
   const setUp = (key: string, options: Options) =>

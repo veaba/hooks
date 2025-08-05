@@ -1,6 +1,7 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useFusionTable from '../index';
 import { sleep } from '../../utils/testingHelpers';
+import { act } from 'react';
 
 type Result = {
   total: number;
@@ -60,21 +61,21 @@ describe('useFusionTable', () => {
   });
 
   beforeAll(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterAll(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('should get table & pagination props', async () => {
     const { result } = setup(getTableData);
     await act(async () => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(result.current.tableProps.loading).toBe(true);
     await act(async () => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(result.current.tableProps.loading).toBe(false);
     expect(result.current.tableProps.dataSource).toHaveLength(10);
@@ -86,16 +87,16 @@ describe('useFusionTable', () => {
     const { result } = setup(getTableData);
     const current = 2;
     await act(async () => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await act(async () => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     act(() => {
       result.current.paginationProps.onChange(current);
     });
     await act(async () => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(result.current.paginationProps.current).toBe(current);
     expect(result.current.paginationProps.total).toBe(total);
@@ -109,23 +110,23 @@ describe('useFusionTable', () => {
 
     result.current.search.submit();
     await act(async () => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(result.current.loading).toBe(true);
     expect(result.current.params[1]).toMatchObject({ name: 'ahooks' });
     await act(async () => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(result.current.loading).toBe(false);
 
     result.current.search.reset();
     expect(result.current.params[1]).toMatchObject({});
     await act(async () => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(result.current.loading).toBe(true);
     await act(async () => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(result.current.loading).toBe(false);
   });
@@ -135,10 +136,10 @@ describe('useFusionTable', () => {
       defaultParams: [{ current: 2, pageSize: 20 }],
     });
     await act(async () => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await act(async () => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(result.current.tableProps.dataSource).toHaveLength(20);
     expect(result.current.paginationProps.current).toBe(2);
@@ -158,10 +159,10 @@ describe('useFusionTable', () => {
     };
     const hook = setup(getTableData, options);
     await act(async () => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await act(async () => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
 
     expect(hook.result.current.tableProps.dataSource).toHaveLength(5);
@@ -170,7 +171,7 @@ describe('useFusionTable', () => {
     hook.unmount();
     const hook2 = setup(getTableData, options);
     await act(async () => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(hook2.result.current.loading).toBe(false);
     expect(hook2.result.current.tableProps.dataSource).toHaveLength(5);

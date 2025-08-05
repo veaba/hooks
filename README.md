@@ -6,6 +6,8 @@
 
 <div align="center">
 
+> 本项目为 [veaba/hooks](veaba/hooks) fork for [alibaba/hooks](alibaba/hooks)，使用现代流行的构件工具库重构，以获得开发体验，仅限于个人学习项目。
+
 A high-quality & reliable React Hooks library.
 
 [![NPM version][image-1]][1]
@@ -61,13 +63,13 @@ import { useRequest } from "ahooks";
 ## 🤝 Contributing
 
 ```bash
-$ git clone git@github.com:alibaba/hooks.git
-$ cd hooks
-$ pnpm run init
-$ pnpm start
+git clone git@github.com:alibaba/hooks.git
+cd hooks
+pnpm run init
+pnpm start
 ```
 
-Open your browser and visit http://127.0.0.1:8000
+Open your browser and visit <http://127.0.0.1:8000>
 
 We welcome all contributions, please read our [CONTRIBUTING.MD](https://github.com/alibaba/hooks/blob/master/CONTRIBUTING.MD) first, let's build a better hooks library together.
 

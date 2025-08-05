@@ -1,10 +1,14 @@
 import type { RenderHookResult } from '@testing-library/react';
-import { act, renderHook, waitFor } from '@testing-library/react';
+import type { Mock } from "vitest";
+import { vi } from 'vitest';
 import useRequest from '../index';
 import { request } from '../../utils/testingHelpers';
+import { act } from 'react';
+import { renderHook } from 'vitest-browser-react';
+const { waitFor} = vi
 
 describe('usePollingPlugin', () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   const setUp = (
     service: Parameters<typeof useRequest>[0],
@@ -14,7 +18,7 @@ describe('usePollingPlugin', () => {
   let hook: RenderHookResult<any, any>;
 
   it('usePollingPlugin pollingInterval=100 pollingWhenHidden=true  should work', async () => {
-    const callback = jest.fn();
+    const callback = vi.fn();
     act(() => {
       hook = setUp(
         () => {
@@ -30,19 +34,19 @@ describe('usePollingPlugin', () => {
     expect(hook.result.current.loading).toBe(true);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(hook.result.current.loading).toBe(false));
     expect(hook.result.current.data).toBe('success');
     expect(callback).toHaveBeenCalledTimes(1);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(callback).toHaveBeenCalledTimes(2));
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(callback).toHaveBeenCalledTimes(3));
 
@@ -51,7 +55,7 @@ describe('usePollingPlugin', () => {
     });
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(callback).toHaveBeenCalledTimes(3);
 
@@ -59,12 +63,12 @@ describe('usePollingPlugin', () => {
       hook.result.current.run();
     });
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(callback).toHaveBeenCalledTimes(4));
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(callback).toHaveBeenCalledTimes(5));
   });
@@ -73,9 +77,9 @@ describe('usePollingPlugin', () => {
   it('usePollingPlugin pollingErrorRetryCount=3 should work', async () => {
     // if request error and set pollingErrorRetryCount
     // and the number of consecutive failures exceeds pollingErrorRetryCount, polling stops
-    let errorCallback: jest.Mock | undefined = undefined;
+    let errorCallback: Mock | undefined = undefined;
     act(() => {
-      errorCallback = jest.fn();
+      errorCallback = vi.fn();
       hook2 = setUp(() => request(0), {
         pollingErrorRetryCount: 3,
         pollingInterval: 100,
@@ -88,28 +92,28 @@ describe('usePollingPlugin', () => {
     expect(errorCallback).toHaveBeenCalledTimes(0);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(hook2.result.current.loading).toBe(false));
     expect(errorCallback).toHaveBeenCalledTimes(1);
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(errorCallback).toHaveBeenCalledTimes(2));
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(errorCallback).toHaveBeenCalledTimes(3));
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(errorCallback).toHaveBeenCalledTimes(4));
 
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     expect(errorCallback).toHaveBeenCalledTimes(4);
 
@@ -117,7 +121,7 @@ describe('usePollingPlugin', () => {
       hook2.result.current.run();
     });
     act(() => {
-      jest.runAllTimers();
+      vi.runAllTimers();
     });
     await waitFor(() => expect(errorCallback).toHaveBeenCalledTimes(5));
   });

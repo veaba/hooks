@@ -1,8 +1,8 @@
-import { renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react'
 import useIsomorphicLayoutEffect from '../index';
 
 describe('useIsomorphicLayoutEffect', () => {
-  const callback = jest.fn();
+  const callback = vi.fn();
   const { result } = renderHook(() => useIsomorphicLayoutEffect(callback));
 
   it('cheak return value', () => {

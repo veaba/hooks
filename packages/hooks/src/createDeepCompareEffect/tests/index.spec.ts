@@ -1,7 +1,8 @@
-import { act, renderHook } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import { useEffect, useLayoutEffect, useState } from 'react';
 import { describe, expect, test } from 'vitest';
 import { createDeepCompareEffect } from '../index';
+import { act } from 'react';
 
 describe('createDeepCompareEffect', () => {
   test('should work for useEffect', async () => {
