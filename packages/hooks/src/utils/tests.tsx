@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 
 export * from '@testing-library/react';
 

@@ -1,4 +1,4 @@
-import { fireEvent, } from '@testing-library/react';
+import { fireEvent } from '@testing-library/react';
 import useReactive from '../';
 import { act } from 'react';
 import { renderHook, render } from 'vitest-browser-react';
@@ -201,7 +201,7 @@ describe('test useReactive feature', () => {
     const hook = renderHook(() => useReactive({ html: <div role="id">foo</div> }));
     const proxy = hook.result.current;
     const wrap = render(proxy.html);
-    const html = wrap.getByRole('id')  as any;
+    const html = wrap.getByRole('id') as any;
 
     expect(html.textContent).toBe('foo');
     act(() => {

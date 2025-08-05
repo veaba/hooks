@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import { fireEvent } from '@testing-library/react';
 import useKeyPress from '../index';
 

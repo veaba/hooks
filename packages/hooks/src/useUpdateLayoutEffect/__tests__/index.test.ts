@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import useUpdateLayoutEffect from '../index';
 
 describe('useUpdateLayoutEffect', () => {

@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import type { Options } from '../index';
 import useDrop from '../index';
 import type { BasicTarget } from '../../utils/domTarget';

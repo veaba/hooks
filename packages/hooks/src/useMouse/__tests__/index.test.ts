@@ -2,7 +2,7 @@ import { vi } from 'vitest';
 import useMouse from '../index';
 import { describe } from 'vitest';
 import { renderHook } from 'vitest-browser-react';
-const { waitFor} = vi
+const { waitFor } = vi;
 
 describe('useMouse', () => {
   function moveMouse(x: number, y: number) {
@@ -33,7 +33,7 @@ describe('useMouse', () => {
   });
 
   it('should be work with target', async () => {
-    const events:Record<string, any> = {};
+    const events: Record<string, any> = {};
     const getBoundingClientRectMock = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect');
     vi.spyOn(document, 'addEventListener').mockImplementation(
       vi.fn((event: any, callback: any) => {

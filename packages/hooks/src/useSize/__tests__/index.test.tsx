@@ -2,18 +2,18 @@ import { useRef } from 'react';
 import { renderHook, act, render, screen } from '@testing-library/react';
 import useSize from '../index';
 
-let callback: (arg0: { target: { clientWidth: number; clientHeight: number; }; }[]) => void;
+let callback: (arg0: { target: { clientWidth: number; clientHeight: number } }[]) => void;
 
 vi.mock('resize-observer-polyfill', () => {
   return {
-    default:vi.fn().mockImplementation((cb) => {
-    callback = cb;
-    return {
-      observe: () => {},
-      disconnect: () => {},
-    };
-  })
-  }
+    default: vi.fn().mockImplementation((cb) => {
+      callback = cb;
+      return {
+        observe: () => {},
+        disconnect: () => {},
+      };
+    }),
+  };
 });
 
 // test about Resize Observer see https://github.com/que-etc/resize-observer-polyfill/tree/master/tests

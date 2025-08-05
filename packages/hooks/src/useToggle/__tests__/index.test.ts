@@ -2,7 +2,6 @@ import { renderHook } from 'vitest-browser-react';
 import useToggle from '../index';
 import { act } from 'react';
 
-
 const callToggle = (hook: any) => {
   act(() => {
     hook.result.current[1].toggle();

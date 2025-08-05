@@ -1,12 +1,12 @@
-import type {RenderHookResult} from '@testing-library/react';
-import { renderHook} from 'vitest-browser-react';
+import type { RenderHookResult } from '@testing-library/react';
+import { renderHook } from 'vitest-browser-react';
 import useRequest from '../index';
-import {request} from '../../utils/testingHelpers';
-import {vi} from 'vitest';
-import type { Mock } from 'vitest'
-import { act } from 'react'
+import { request } from '../../utils/testingHelpers';
+import { vi } from 'vitest';
+import type { Mock } from 'vitest';
+import { act } from 'react';
 
-const waitFor = vi.waitFor
+const waitFor = vi.waitFor;
 
 describe('useRetryPlugin', () => {
   vi.useFakeTimers();
@@ -14,9 +14,10 @@ describe('useRetryPlugin', () => {
   const setUp = (
     service: Parameters<typeof useRequest>[0],
     options: Parameters<typeof useRequest>[1],
-  ) => renderHook((o) => {
-    return useRequest(service, o || options)
-  });
+  ) =>
+    renderHook((o) => {
+      return useRequest(service, o || options);
+    });
 
   let hook: RenderHookResult<any, any>;
   let hook2: RenderHookResult<any, any>;
@@ -31,7 +32,7 @@ describe('useRetryPlugin', () => {
       });
     });
     act(() => {
-      vi.setConfig({testTimeout: 10000});
+      vi.setConfig({ testTimeout: 10000 });
       vi.advanceTimersByTime(500);
     });
     expect(errorCallback).toHaveBeenCalledTimes(0);

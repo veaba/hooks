@@ -4,7 +4,7 @@ import useRequest from '../index';
 import { request } from '../../utils/testingHelpers';
 import { act } from 'react';
 import { renderHook } from 'vitest-browser-react';
-const { waitFor} = vi
+const { waitFor } = vi;
 
 describe('useDebouncePlugin', () => {
   const setUp = (

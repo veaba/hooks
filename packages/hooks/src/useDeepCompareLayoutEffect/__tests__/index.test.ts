@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import { useState } from 'react';
 import useDeepCompareLayoutEffect from '../index';
 import { act } from 'react';

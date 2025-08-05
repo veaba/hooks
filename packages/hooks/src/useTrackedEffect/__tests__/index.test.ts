@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import useTrackedEffect from '../index';
 
 describe('useTrackedEffect', () => {

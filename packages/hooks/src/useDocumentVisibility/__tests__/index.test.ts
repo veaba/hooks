@@ -1,5 +1,5 @@
 import useDocumentVisibility from '../index';
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import { vi } from 'vitest';
 import { act } from 'react';
 

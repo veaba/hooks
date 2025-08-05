@@ -1,12 +1,12 @@
 import type { RenderHookResult } from '@testing-library/react';
-import { vi} from 'vitest';
+import { vi } from 'vitest';
 import { fireEvent } from '@testing-library/react';
 import useRequest from '../index';
 import { request } from '../../utils/testingHelpers';
 import { act } from 'react';
 import { renderHook } from 'vitest-browser-react';
 
-const { waitFor } = vi
+const { waitFor } = vi;
 
 describe('useRefreshOnWindowFocusPlugin', () => {
   vi.useFakeTimers();

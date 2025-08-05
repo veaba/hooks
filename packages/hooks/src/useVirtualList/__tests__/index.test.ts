@@ -2,7 +2,7 @@ import type { RenderHookResult } from '@testing-library/react';
 import { renderHook } from 'vitest-browser-react';
 import type { Options } from '../index';
 import useVirtualList from '../index';
-import { vi, describe, beforeEach,afterEach,it } from 'vitest'
+import { vi, describe, beforeEach, afterEach, it } from 'vitest';
 import { act } from 'react';
 
 describe('useVirtualList', () => {
@@ -51,7 +51,7 @@ describe('useVirtualList', () => {
       await vi.waitFor(() => {
         expect(hook.result.current[0].length).toBe(20);
         expect(container.scrollTop).toBe(80 * 30);
-      })
+      });
     });
 
     it('test with fixed height', () => {

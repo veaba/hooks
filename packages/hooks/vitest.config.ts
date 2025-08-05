@@ -1,6 +1,6 @@
-import {resolve} from 'node:path';
-import {defineConfig} from 'vitest/config';
-import react from '@vitejs/plugin-react'
+import { resolve } from 'node:path';
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
 
 // https://cn.vitest.dev/guide/
 export default defineConfig({
@@ -17,9 +17,7 @@ export default defineConfig({
     browser: {
       provider: 'playwright', // or 'webdriverio'
       enabled: true,
-      instances: [
-        {browser: 'chromium'},
-      ],
+      instances: [{ browser: 'chromium' }],
     },
     testTimeout: 30_000,
     include: ['src/**/{tests,__tests__}/*.{test,spec}.?(c|m)[jt]s?(x)'],

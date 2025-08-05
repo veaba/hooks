@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import useUnmount from '../index';
 describe('useUnmount', () => {
   it('useUnmount should work', async () => {

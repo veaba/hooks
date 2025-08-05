@@ -1,11 +1,11 @@
 import type { RenderHookResult } from '@testing-library/react';
-import type { Mock } from "vitest";
+import type { Mock } from 'vitest';
 import { vi } from 'vitest';
 import useRequest from '../index';
 import { request } from '../../utils/testingHelpers';
 import { act } from 'react';
 import { renderHook } from 'vitest-browser-react';
-const { waitFor} = vi
+const { waitFor } = vi;
 
 describe('usePollingPlugin', () => {
   vi.useFakeTimers();

@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import useMutationObserver from '../index';
 
 const options: MutationObserverInit = { attributes: true, childList: true };

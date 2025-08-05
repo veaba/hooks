@@ -1,10 +1,10 @@
 import type { RenderHookResult } from '@testing-library/react';
 import usePagination from '../';
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import { vi } from 'vitest';
 import { act } from 'react';
 
-const { waitFor } = vi
+const { waitFor } = vi;
 
 // 初始化
 // 基本 action

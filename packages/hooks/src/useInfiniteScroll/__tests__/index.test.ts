@@ -102,12 +102,8 @@ describe('useInfiniteScroll', () => {
       vi.advanceTimersByTime(1000);
     });
     expect(result.current.loading).toBe(false);
-    const scrollHeightSpy = vi
-      .spyOn(targetEl, 'scrollHeight', 'get')
-      .mockImplementation(() => 150);
-    const clientHeightSpy = vi
-      .spyOn(targetEl, 'clientHeight', 'get')
-      .mockImplementation(() => 300);
+    const scrollHeightSpy = vi.spyOn(targetEl, 'scrollHeight', 'get').mockImplementation(() => 150);
+    const clientHeightSpy = vi.spyOn(targetEl, 'clientHeight', 'get').mockImplementation(() => 300);
     setTargetInfo('scrollTop', 100);
     act(() => {
       events['scroll']();
@@ -161,12 +157,8 @@ describe('useInfiniteScroll', () => {
     expect(result.current.loading).toBe(false);
 
     // mock first scroll
-    const scrollHeightSpy = vi
-      .spyOn(targetEl, 'scrollHeight', 'get')
-      .mockImplementation(() => 150);
-    const clientHeightSpy = vi
-      .spyOn(targetEl, 'clientHeight', 'get')
-      .mockImplementation(() => 500);
+    const scrollHeightSpy = vi.spyOn(targetEl, 'scrollHeight', 'get').mockImplementation(() => 150);
+    const clientHeightSpy = vi.spyOn(targetEl, 'clientHeight', 'get').mockImplementation(() => 500);
     setTargetInfo('scrollTop', 300);
 
     act(() => {

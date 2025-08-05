@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import type { Options } from '../index';
 import useDrag from '../index';
 import type { BasicTarget } from '../../utils/domTarget';
@@ -55,7 +55,6 @@ describe('useDrag', () => {
     events.dragend(mockEvent);
     expect(onDragEnd).toBeCalled();
   });
-
 
   /**
    * @vitest-environment jsdom

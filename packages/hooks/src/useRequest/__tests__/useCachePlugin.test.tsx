@@ -2,12 +2,12 @@ import { vi } from 'vitest';
 import { render } from '@testing-library/react';
 import useRequest, { clearCache } from '../index';
 import { request } from '../../utils/testingHelpers';
-import  { useState } from 'react';
+import { useState } from 'react';
 import 'jest-localstorage-mock';
 import { act } from 'react';
 import { renderHook } from 'vitest-browser-react';
 
-const { waitFor } = vi
+const { waitFor } = vi;
 
 describe('useCachePlugin', () => {
   vi.useFakeTimers();

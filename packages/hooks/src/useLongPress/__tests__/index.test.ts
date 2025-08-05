@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import useLongPress from '../index';
 import type { Options } from '../index';
 
@@ -6,7 +6,7 @@ const mockCallback = vi.fn();
 const mockClickCallback = vi.fn();
 const mockLongPressEndCallback = vi.fn();
 
-let events:Record<string, any>
+let events: Record<string, any>;
 const mockTarget = {
   addEventListener: vi.fn((event, callback) => {
     events[event] = callback;

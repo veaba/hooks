@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import useIsomorphicLayoutEffect from '../index';
 
 describe('useIsomorphicLayoutEffect', () => {

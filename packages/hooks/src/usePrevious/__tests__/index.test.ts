@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import type { ShouldUpdateFunc } from '../';
 import usePrevious from '../';
 

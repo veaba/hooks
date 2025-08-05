@@ -1,4 +1,4 @@
-import { renderHook } from 'vitest-browser-react'
+import { renderHook } from 'vitest-browser-react';
 import { useEffect, useLayoutEffect } from 'react';
 import { describe, expect, test } from 'vitest';
 import { createUpdateEffect } from '../index';

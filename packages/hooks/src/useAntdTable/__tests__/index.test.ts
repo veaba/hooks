@@ -7,7 +7,7 @@ import { Form } from 'antd';
 import { act } from 'react';
 import { renderHook } from 'vitest-browser-react';
 
-const { waitFor} = vi
+const { waitFor } = vi;
 
 interface Query {
   current: number;
