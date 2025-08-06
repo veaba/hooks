@@ -1,5 +1,5 @@
-import { bench, describe } from 'vitest'
-import { execSync } from "node:child_process";
+import { bench, describe } from 'vitest';
+import { execSync } from 'node:child_process';
 
 function measureCommand(cmd: string) {
   const start = performance.now();
@@ -16,10 +16,10 @@ function measureCommand(cmd: string) {
 
 describe('sort', () => {
   bench('rslib build', () => {
-    measureCommand('pnpm run rslib')
-  })
+    measureCommand('pnpm run rslib');
+  });
 
   bench('tsdown build', () => {
-    measureCommand('pnpm run tsdown')
-  })
-})
+    measureCommand('pnpm run tsdown');
+  });
+});
