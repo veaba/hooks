@@ -15,11 +15,19 @@ function measureCommand(cmd: string) {
 }
 
 describe('sort', () => {
-  bench('rslib build', () => {
-    measureCommand('pnpm run rslib');
-  }, { iterations: 1 });
+  bench(
+    'rslib build',
+    () => {
+      measureCommand('pnpm run rslib');
+    },
+    { iterations: 1 },
+  );
 
-  bench('tsdown build', () => {
-    measureCommand('pnpm run tsdown');
-  }, { iterations: 1 });
+  bench(
+    'tsdown build',
+    () => {
+      measureCommand('pnpm run tsdown');
+    },
+    { iterations: 1 },
+  );
 });
