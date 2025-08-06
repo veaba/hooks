@@ -23,7 +23,7 @@
   "homepage": "https://github.com/alibaba/hooks",
   "scripts": {
     "build": "rslib build",
-    "build1": "tsdown",
+    "tsdown": "tsdown",
     "test": "vitest run",
     "ui": "vitest --ui -w",
     "test:cov": "vitest run --coverage"

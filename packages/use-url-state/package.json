@@ -18,6 +18,7 @@
   },
   "scripts": {
     "build": "tsdown",
+    "tsdown": "tsdown",
     "test": "vitest run",
     "test:cov": "vitest run --coverage"
   },
