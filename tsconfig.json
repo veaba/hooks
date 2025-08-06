@@ -18,5 +18,16 @@
     "strictNullChecks": true,
     "importHelpers": true
   },
-  "exclude": ["node_modules", "lib", "es", "dist","dist-tsdown","dist-rslib", "example", "vitest.config.ts","tsdown.config.ts","rslib.config.ts"]
+  "exclude": [
+    "node_modules",
+    "lib",
+    "es",
+    "dist",
+    "dist-tsdown",
+    "dist-rslib",
+    "example",
+    "vitest.config.ts",
+    "tsdown.config.ts",
+    "rslib.config.ts"
+  ]
 }

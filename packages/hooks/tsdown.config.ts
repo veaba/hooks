@@ -13,7 +13,7 @@ export default defineConfig([
       return {
         js: '.js',
       };
-    }
+    },
   },
   {
     format: ['cjs'],
@@ -25,6 +25,6 @@ export default defineConfig([
       return {
         js: '.js',
       };
-    }
+    },
   },
 ]);
