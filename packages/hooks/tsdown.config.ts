@@ -4,18 +4,27 @@ export default defineConfig([
   {
     format: ['es'],
     platform: 'browser',
-    outDir: 'dist/es',
+    outDir: 'dist-tsdown/es',
     unbundle: true,
     dts: {
       sourcemap: true,
     },
-    fixedExtension: false,
+    outExtensions: () => {
+      return {
+        js: '.js',
+      };
+    }
   },
   {
     format: ['cjs'],
-    platform: 'neutral',
-    outDir: 'dist/lib',
+    platform: 'browser',
+    outDir: 'dist-tsdown/lib',
     unbundle: true,
     exports: false,
+    outExtensions: () => {
+      return {
+        js: '.js',
+      };
+    }
   },
 ]);

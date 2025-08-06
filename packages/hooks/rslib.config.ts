@@ -8,7 +8,7 @@ export default defineConfig({
       autoExtension: false,
       output: {
         distPath: {
-          root: './dist/es',
+          root: './dist-rslib/es',
         },
       },
     },
@@ -18,7 +18,7 @@ export default defineConfig({
       autoExtension: false,
       output: {
         distPath: {
-          root: './dist/lib',
+          root: './dist-rslib/lib',
         },
       },
     },
@@ -29,12 +29,7 @@ export default defineConfig({
     },
   },
   output: {
-    // copy: [{ from: './dist', globOptions: { ignore: ['**/__tests/**'] } }],
-    // filename: {
-    //   js: "[name].js"
-    // },
     target: 'web',
   },
 });
 
-// dist\lib\useInfiniteScroll\__tests__\index.test.js

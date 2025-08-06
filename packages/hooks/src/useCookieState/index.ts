@@ -9,7 +9,7 @@ export interface Options extends Cookies.CookieAttributes {
   defaultValue?: State | (() => State);
 }
 
-function useCookieState(cookieKey: string, options: Options = {}) {
+function useCookieState(cookieKey: string, options: Options = {}): readonly [State, (newValue: State | ((prevState: State) => State), newOptions?: Cookies.CookieAttributes) => void] {
   const [state, setState] = useState<State>(() => {
     const cookieValue = Cookies.get(cookieKey);
 
