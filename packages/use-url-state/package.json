@@ -17,7 +17,8 @@
     "url": "git+https://github.com/alibaba/hooks.git"
   },
   "scripts": {
-    "build": "tsdown",
+    "build": "rslib build",
+    "rslib": "rslib build",
     "tsdown": "tsdown",
     "test": "vitest run",
     "test:cov": "vitest run --coverage"

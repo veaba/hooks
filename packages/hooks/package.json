@@ -23,6 +23,7 @@
   "homepage": "https://github.com/alibaba/hooks",
   "scripts": {
     "build": "rslib build",
+    "rslib": "rslib build",
     "tsdown": "tsdown",
     "test": "vitest run",
     "ui": "vitest --ui -w",

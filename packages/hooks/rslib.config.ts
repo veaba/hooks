@@ -10,6 +10,7 @@ export default defineConfig({
         distPath: {
           root: './dist-rslib/es',
         },
+        sourceMap: true,
       },
     },
     {
@@ -25,7 +26,7 @@ export default defineConfig({
   ],
   source: {
     entry: {
-      index: ['./src/**/*.ts'],
+      index: ['./src/**/*.ts', '!src/**/*.(test|spec).ts', '!src/**/demo/*.tsx'],
     },
   },
   output: {

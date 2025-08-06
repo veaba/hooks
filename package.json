@@ -21,6 +21,7 @@
     "clean-dist": "rimraf 'packages/*/{lib,es,node_modules,dist}'",
     "clean": "pnpm run clean-dist && rimraf node_modules",
     "build": "pnpm -r --filter=./packages/* run build",
+    "rslib": "pnpm -r --filter=./packages/* run rslib",
     "tsdown": "pnpm -r --filter=./packages/* run tsdown",
     "test": "pnpm --filter=./packages/* test",
     "ui": "pnpm --filter=./packages/* ui",
@@ -37,7 +38,8 @@
     "pub:beta": "pnpm run build && pnpm -r --filter=./packages/* publish --tag beta",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
-    "commit": "git add -A && czg"
+    "commit": "git add -A && czg",
+    "bench:build": "vitest bench"
   },
   "devDependencies": {
     "@alifd/next": "^1.27.32",
