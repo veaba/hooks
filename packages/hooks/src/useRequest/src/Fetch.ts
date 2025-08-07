@@ -4,7 +4,7 @@ import { isFunction } from '../../utils';
 import type { FetchState, Options, PluginReturn, Service, Subscribe } from './types';
 
 export default class Fetch<TData, TParams extends any[]> {
-  pluginImpls: PluginReturn<TData, TParams>[];
+  pluginImpls: PluginReturn<TData, TParams>[] | undefined;
 
   count: number = 0;
 
@@ -110,17 +110,17 @@ export default class Fetch<TData, TParams extends any[]> {
       }
 
       this.setState({
-        error,
+        error: error as Error,
         loading: false,
       });
 
-      this.options.onError?.(error, params);
-      this.runPluginHandler('onError', error, params);
+      this.options.onError?.(error as Error, params);
+      this.runPluginHandler('onError', error as Error, params);
 
-      this.options.onFinally?.(params, undefined, error);
+      this.options.onFinally?.(params, undefined, error as Error);
 
       if (currentCount === this.count) {
-        this.runPluginHandler('onFinally', params, undefined, error);
+        this.runPluginHandler('onFinally', params, undefined, error as Error);
       }
 
       throw error;

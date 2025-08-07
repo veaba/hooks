@@ -34,7 +34,7 @@ function useLongPress(
 
   useEffectWithTarget(
     () => {
-      const targetElement = getTargetElement(target);
+      const targetElement = getTargetElement(target) as HTMLElement;
       if (!targetElement?.addEventListener) {
         return;
       }

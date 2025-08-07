@@ -9,7 +9,7 @@ function useRafState<S>(initialState?: S | (() => S)) {
   const ref = useRef(0);
   const [state, setState] = useState(initialState);
 
-  const setRafState = useCallback((value: S | ((prevState: S) => S)) => {
+  const setRafState = useCallback((value: S | ((prevState: S | undefined) => S | undefined)) => {
     cancelAnimationFrame(ref.current);
 
     ref.current = requestAnimationFrame(() => {

@@ -1,6 +1,12 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "types": ["vitest/globals", "vitest/jsdom"]
-  }
+    "types": ["vitest/globals", "vitest/jsdom"],
+  },
+  "exclude": [
+    "src/**/*.tsx",
+    "src/**/__tests__/*.ts",
+    "src/**/tests/*.ts",
+  ],
+  "declarationDir": "./dist-rslib/es"
 }

@@ -119,7 +119,9 @@ const useVirtualList = <T = any>(list: T[], options: Options<T>) => {
   useUpdateEffect(() => {
     const wrapper = getTargetElement(wrapperTarget) as HTMLElement;
     if (wrapper) {
+      // @ts-ignore
       Object.keys(wrapperStyle).forEach((key) => (wrapper.style[key] = wrapperStyle[key]));
+
     }
   }, [wrapperStyle]);
 

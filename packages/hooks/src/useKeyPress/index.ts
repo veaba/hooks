@@ -121,7 +121,7 @@ const aliasKeyCodeMap = {
   backslash: 220,
   closebracket: 221,
   singlequote: 222,
-};
+} as const; // Make the object readonly and with specific types
 
 // 修饰键
 const modifierKey = {
@@ -134,7 +134,7 @@ const modifierKey = {
     }
     return event.metaKey;
   },
-};
+} as const; // Make the object readonly and with specific types
 
 // 判断合法的按键类型
 function isValidKeyType(value: unknown): value is string | number {
@@ -144,7 +144,7 @@ function isValidKeyType(value: unknown): value is string | number {
 // 根据 event 计算激活键数量
 function countKeyByEvent(event: KeyboardEvent) {
   const countOfModifier = Object.keys(modifierKey).reduce((total, key) => {
-    if (modifierKey[key](event)) {
+    if (modifierKey[key as keyof typeof modifierKey](event)) {
       return total + 1;
     }
 
@@ -178,9 +178,10 @@ function genFilterKey(event: KeyboardEvent, keyFilter: KeyType, exactMatch: bool
 
   for (const key of genArr) {
     // 组合键
-    const genModifier = modifierKey[key];
+    const genModifier = modifierKey[key as keyof typeof modifierKey];
     // keyCode 别名
-    const aliasKeyCode: number | number[] = aliasKeyCodeMap[key.toLowerCase()];
+    const lowerKey = key.toLowerCase() as keyof typeof aliasKeyCodeMap;
+    const aliasKeyCode = aliasKeyCodeMap[lowerKey];
 
     if ((genModifier && genModifier(event)) || (aliasKeyCode && aliasKeyCode === event.keyCode)) {
       genLen++;
@@ -236,7 +237,12 @@ function useKeyPress(
         return;
       }
 
-      const callbackHandler = (event: KeyboardEvent) => {
+      const callbackHandler = (event: Event) => {
+        // Type guard to ensure we're working with a KeyboardEvent
+        if (!(event instanceof KeyboardEvent)) {
+          return;
+        }
+        
         const genGuard = genKeyFormatter(keyFilterRef.current, exactMatch);
         const keyGuard = genGuard(event);
         const firedKey = isValidKeyType(keyGuard) ? keyGuard : event.key;
@@ -247,11 +253,11 @@ function useKeyPress(
       };
 
       for (const eventName of events) {
-        el?.addEventListener?.(eventName, callbackHandler, useCapture);
+        el?.addEventListener(eventName, callbackHandler as EventListener, useCapture);
       }
       return () => {
         for (const eventName of events) {
-          el?.removeEventListener?.(eventName, callbackHandler, useCapture);
+          el?.removeEventListener(eventName, callbackHandler as EventListener, useCapture);
         }
       };
     },

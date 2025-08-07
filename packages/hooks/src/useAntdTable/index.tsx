@@ -44,7 +44,7 @@ const useAntdTable = <TData extends Data, TParams extends Params>(
   const [type, setType] = useState(cacheFormTableData?.type || defaultType);
 
   const allFormDataRef = useRef<Record<string, any>>({});
-  const defaultDataSourceRef = useRef([]);
+  const defaultDataSourceRef = useRef<any[]>([]);
   const runSuccessRef = useRef(false);
 
   const isAntdV4 = !!form?.getInternalHooks;
@@ -62,7 +62,7 @@ const useAntdTable = <TData extends Data, TParams extends Params>(
 
     // antd 3
     const allFieldsValue = form.getFieldsValue();
-    const activeFieldsValue = {};
+    const activeFieldsValue = {} as Record<string, any>;
     Object.keys(allFieldsValue).forEach((key: string) => {
       if (form.getFieldInstance ? form.getFieldInstance(key) : true) {
         activeFieldsValue[key] = allFieldsValue[key];
@@ -106,7 +106,7 @@ const useAntdTable = <TData extends Data, TParams extends Params>(
     }
 
     // antd v3
-    const activeFieldsValue = {};
+    const activeFieldsValue = {} as Record<string, any>;
     Object.keys(allFormDataRef.current).forEach((key) => {
       if (form.getFieldInstance ? form.getFieldInstance(key) : true) {
         activeFieldsValue[key] = allFormDataRef.current[key];
@@ -121,7 +121,7 @@ const useAntdTable = <TData extends Data, TParams extends Params>(
       ...allFormDataRef.current,
       ...activeFieldsValue,
     };
-    setType((t) => (t === 'simple' ? 'advance' : 'simple'));
+    setType((t: string) => (t === 'simple' ? 'advance' : 'simple'));
   };
 
   const _submit = (initPagination?: TParams[0]) => {
@@ -133,7 +133,7 @@ const useAntdTable = <TData extends Data, TParams extends Params>(
         .then((values = {}) => {
           const pagination = initPagination || {
             pageSize: options.defaultPageSize || 10,
-            ...(params?.[0] || {}),
+            ...params?.[0],
             current: 1,
           };
           if (!form) {
@@ -163,7 +163,7 @@ const useAntdTable = <TData extends Data, TParams extends Params>(
       form.resetFields();
     }
     _submit({
-      ...(defaultParams?.[0] || {}),
+      ...defaultParams?.[0],
       pageSize: options.defaultPageSize || options.defaultParams?.[0]?.pageSize || 10,
       current: 1,
     });
@@ -177,7 +177,7 @@ const useAntdTable = <TData extends Data, TParams extends Params>(
         : {
             pageSize: options.defaultPageSize || options.defaultParams?.[0]?.pageSize || 10,
             current: 1,
-            ...(defaultParams?.[0] || {}),
+            ...defaultParams?.[0],
           },
     );
   };
