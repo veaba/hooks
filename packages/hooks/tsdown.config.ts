@@ -10,8 +10,8 @@ export default defineConfig([
     outputOptions(outputOptions) {
       return {
         ...outputOptions,
-        name: "ahooks"
-      }
+        name: 'ahooks',
+      };
     },
   },
   {

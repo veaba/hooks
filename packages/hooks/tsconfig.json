@@ -1,17 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "types": [
-      "vitest/globals",
-      "vitest/jsdom"
-    ],
+    "types": ["vitest/globals", "vitest/jsdom"],
     "rootDir": "src"
   },
-  "exclude": [
-    "src/**/*.tsx",
-    "src/**/__test__/*.ts",
-    "src/**/__tests__/*.ts",
-    "src/**/tests/*.ts"
-  ],
-  "declarationDir": "./dist-rslib/es",
+  "exclude": ["src/**/*.tsx", "src/**/__test__/*.ts", "src/**/__tests__/*.ts", "src/**/tests/*.ts"],
+  "declarationDir": "./dist-rslib/es"
 }
