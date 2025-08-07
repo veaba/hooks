@@ -242,7 +242,7 @@ function useKeyPress(
         if (!(event instanceof KeyboardEvent)) {
           return;
         }
-        
+
         const genGuard = genKeyFormatter(keyFilterRef.current, exactMatch);
         const keyGuard = genGuard(event);
         const firedKey = isValidKeyType(keyGuard) ? keyGuard : event.key;

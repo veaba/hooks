@@ -121,7 +121,6 @@ const useVirtualList = <T = any>(list: T[], options: Options<T>) => {
     if (wrapper) {
       // @ts-ignore
       Object.keys(wrapperStyle).forEach((key) => (wrapper.style[key] = wrapperStyle[key]));
-
     }
   }, [wrapperStyle]);
 

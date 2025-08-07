@@ -8,7 +8,7 @@ export default defineConfig({
       //   // distPath: './dist-rslib/es',
       //   build: true,
       // },
-      dts:true,
+      dts: true,
       bundle: false,
       autoExtension: false,
       output: {
@@ -16,7 +16,6 @@ export default defineConfig({
           root: './dist-rslib/es',
         },
       },
-
     },
     // {
     //   format: 'cjs',
@@ -31,11 +30,7 @@ export default defineConfig({
   ],
   source: {
     entry: {
-      index: [
-        './src/**/*.ts',
-        '!src/**/*.(test|spec).ts',
-        '!src/**/*.tsx',
-      ],
+      index: ['./src/**/*.ts', '!src/**/*.(test|spec).ts', '!src/**/*.tsx'],
     },
     // exclude: ['src/**/(demo|doc)/*.(ts|tsx)','src/**/__test__/*.ts'],
   },
