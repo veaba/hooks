@@ -2,12 +2,33 @@ import { defineConfig } from '@rslib/core';
 
 export default defineConfig({
   lib: [
+    /**
+     * @TODO it is correct?
+     * @see npm https://www.npmjs.com/package/ahooks?activeTab=code
+     *
+    */
+    {
+      format: 'umd',
+      umdName: 'ahooks',
+      bundle: true,
+      dts: false,
+      output: {
+        filename: {
+          js: "ahooks.js"
+        },
+        externals: ["react", 'dayjs', 'intersection-observer', 'lodash'],
+        distPath: {
+          root: './dist-rslib/dist',
+        },
+        // minify: {
+        //   // js: true
+        // }
+        target: "web"
+      },
+    },
     {
       format: 'esm',
-      // dts: {
-      //   // distPath: './dist-rslib/es',
-      //   build: true,
-      // },
+      outBase: "./src",
       dts: true,
       bundle: false,
       autoExtension: false,
@@ -16,24 +37,30 @@ export default defineConfig({
           root: './dist-rslib/es',
         },
       },
+      source: {
+        entry: {
+          index: ['./src/**/*.ts', '!src/**/__test{,s}__/*.ts', '!src/**/tests/*.ts', '!src/**/*.tsx'],
+        },
+      }
     },
-    // {
-    //   format: 'cjs',
-    //   bundle: false,
-    //   autoExtension: false,
-    //   output: {
-    //     distPath: {
-    //       root: './dist-rslib/lib',
-    //     },
-    //   },
-    // },
+    {
+      format: 'cjs',
+      outBase: "./src",
+      dts: true,
+      bundle: false,
+      autoExtension: false,
+      output: {
+        distPath: {
+          root: './dist-rslib/lib',
+        },
+      },
+      source: {
+        entry: {
+          index: ['./src/**/*.ts', '!src/**/__test{,s}__/*.ts', '!src/**/tests/*.ts', '!src/**/*.tsx'],
+        },
+      }
+    },
   ],
-  source: {
-    entry: {
-      index: ['./src/**/*.ts', '!src/**/*.(test|spec).ts', '!src/**/*.tsx'],
-    },
-    // exclude: ['src/**/(demo|doc)/*.(ts|tsx)','src/**/__test__/*.ts'],
-  },
   output: {
     target: 'web',
   },

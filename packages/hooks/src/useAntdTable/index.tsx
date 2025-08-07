@@ -44,7 +44,7 @@ const useAntdTable = <TData extends Data, TParams extends Params>(
   const [type, setType] = useState(cacheFormTableData?.type || defaultType);
 
   const allFormDataRef = useRef<Record<string, any>>({});
-  const defaultDataSourceRef = useRef<any[]>([]);
+  const defaultDataSourceRef = useRef([]);
   const runSuccessRef = useRef(false);
 
   const isAntdV4 = !!form?.getInternalHooks;
@@ -133,7 +133,7 @@ const useAntdTable = <TData extends Data, TParams extends Params>(
         .then((values = {}) => {
           const pagination = initPagination || {
             pageSize: options.defaultPageSize || 10,
-            ...params?.[0],
+            ...(params?.[0] || {}),
             current: 1,
           };
           if (!form) {
@@ -163,7 +163,7 @@ const useAntdTable = <TData extends Data, TParams extends Params>(
       form.resetFields();
     }
     _submit({
-      ...defaultParams?.[0],
+      ...(defaultParams?.[0] || {}),
       pageSize: options.defaultPageSize || options.defaultParams?.[0]?.pageSize || 10,
       current: 1,
     });
@@ -177,7 +177,7 @@ const useAntdTable = <TData extends Data, TParams extends Params>(
         : {
             pageSize: options.defaultPageSize || options.defaultParams?.[0]?.pageSize || 10,
             current: 1,
-            ...defaultParams?.[0],
+            ...(defaultParams?.[0] || {}),
           },
     );
   };
