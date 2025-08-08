@@ -6,11 +6,24 @@ export default defineConfig([
     platform: 'browser',
     unbundle: false,
     outDir: 'dist-tsdown/dist',
-    minify: true,
+    // minify: true,
     outputOptions(outputOptions) {
       return {
         ...outputOptions,
+        // not working
         name: 'ahooks',
+        globals: {
+          'react': 'React',
+          'lodash/debounce': '_.debounce',
+          'lodash/throttle': '_.throttle',
+          'dayjs': 'dayjs',
+          'react-fast-compare': 'reactFastCompare',
+          'screenfull': 'screenfull',
+          'js-cookie': 'js-cookie',
+          'intersection-observer': 'IntersectionObserver',
+          'lodash/isPlainObject': '_.isPlainObject',
+          'resize-observer-polyfill': 'ResizeObserver'
+        },
       };
     },
   },
