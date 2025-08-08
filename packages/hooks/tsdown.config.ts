@@ -13,16 +13,16 @@ export default defineConfig([
         // not working
         name: 'ahooks',
         globals: {
-          'react': 'React',
+          react: 'React',
           'lodash/debounce': '_.debounce',
           'lodash/throttle': '_.throttle',
-          'dayjs': 'dayjs',
+          dayjs: 'dayjs',
           'react-fast-compare': 'reactFastCompare',
-          'screenfull': 'screenfull',
+          screenfull: 'screenfull',
           'js-cookie': 'js-cookie',
           'intersection-observer': 'IntersectionObserver',
           'lodash/isPlainObject': '_.isPlainObject',
-          'resize-observer-polyfill': 'ResizeObserver'
+          'resize-observer-polyfill': 'ResizeObserver',
         },
       };
     },
@@ -45,7 +45,6 @@ export default defineConfig([
     outDir: 'dist-tsdown/lib',
     unbundle: true,
     exports: false,
-    dts: false,
     outExtensions: () => {
       return {
         js: '.js',

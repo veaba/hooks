@@ -62,17 +62,17 @@ Write-Host "pnpm run rslib: $($elapsed.TotalSeconds) seconds"
 result:
 
 ```shell
+PS F:\Github\veaba\hooks>
 PS F:\Github\veaba\hooks> $elapsed = Measure-Command {
 >>     pnpm run rslib
 >> }
 >> Write-Host "pnpm run rslib: $($elapsed.TotalSeconds) seconds"
-pnpm run rslib: 5.7699868 seconds
+pnpm run rslib: 6.8548657 seconds
 PS F:\Github\veaba\hooks> $elapsed = Measure-Command {
 >>     pnpm run rslib
 >> }
 >> Write-Host "pnpm run rslib: $($elapsed.TotalSeconds) seconds"
-pnpm run rslib: 5.9108516 seconds
-PS F:\Github\veaba\hooks> 
+pnpm run rslib: 6.0055375 seconds
 
 ```
 
@@ -92,13 +92,22 @@ PS F:\Github\veaba\hooks> $elapsed = Measure-Command {
 >>     pnpm run tsdown
 >> }
 >> Write-Host "pnpm run tsdown: $($elapsed.TotalSeconds) seconds"
-pnpm run tsdown: 5.2645592 seconds
+pnpm run tsdown: 5.8085162 seconds
 PS F:\Github\veaba\hooks> $elapsed = Measure-Command {
 >>     pnpm run tsdown
 >> }
 >> Write-Host "pnpm run tsdown: $($elapsed.TotalSeconds) seconds"
-pnpm run tsdown: 5.0445151 seconds
-PS F:\Github\veaba\hooks> 
-
-
+pnpm run tsdown: 5.7541112 seconds
 ```
+
+### 产物结构
+
+请在此查看：
+
+- [npm.log](tests/npm.log)
+- [rslib.log](tests/rslib.log)
+- [tsdown.log](tests/tsdown.log)
+
+### 对比讨论
+
+- [语雀-基于 ahooks 的库打包工具升级探讨，详细对比了 rslib 与 tsdown 的表现](<https://www.yuque.com/veaba/mslv25/oq9e42da8nnwbzms?singleDoc#>)

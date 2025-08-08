@@ -23,7 +23,6 @@ export default defineConfig({
         // minify: {
         //   // js: true
         // }
-        target: 'web',
       },
     },
     {
